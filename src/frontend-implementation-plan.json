@@ -1,0 +1,75 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Admin Gallery upload/management UI and dynamic public Gallery rendering",
+  "requirements": [
+    {
+      "id": "REQ-10",
+      "summary": "Add an admin-only Gallery management UI under #/admin/gallery for uploading, listing, and deleting Gallery images.",
+      "acceptanceCriteria": [
+        "A non-authenticated user attempting to access the admin gallery management UI is shown an English sign-in prompt consistent with the existing admin access gating.",
+        "An authenticated non-admin user attempting to access the admin gallery management UI is shown an English access denied message consistent with the existing admin access gating.",
+        "An admin can select an image file in the browser, upload it, see a success state in English, and see the new image appear in the uploaded images list without a full page reload.",
+        "An admin can delete an uploaded image and it is removed from the list after confirmation/clear UI action."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminGalleryPage.tsx",
+          "operation": "create",
+          "description": "Create an AdminGalleryPage that reuses the existing admin access gating pattern (useAdminGuard + LoginButton) and provides: file picker + optional alt text input, upload action, list of uploaded images with thumbnail preview, and a delete action with clear confirmation. Use the authorization component’s frontend guidance for authenticated/admin-only UI gating and error handling. Verify the component's usage instructions before implementing. Use the blob-storage ExternalBlob capabilities (upload progress via withUploadProgress and preview via getDirectURL where available). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Extend the existing hash-based admin routing so #/admin/gallery renders AdminGalleryPage and #/admin/inquiries continues to render AdminInquiriesPage (defaulting to inquiries for other #/admin/* hashes). Ensure the new admin page is reachable via hash routing as required."
+        },
+        {
+          "path": "frontend/src/pages/AdminInquiriesPage.tsx",
+          "operation": "modify",
+          "description": "Add a simple in-admin navigation affordance (e.g., button/link) to go to #/admin/gallery so admins can reach Gallery management from the existing admin area, while preserving current access gating and English UI text."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Render uploaded Gallery images from the backend on the public Gallery section, falling back to the existing static images when none exist.",
+      "acceptanceCriteria": [
+        "When the backend returns one or more uploaded gallery images, the public gallery grid and lightbox render those images correctly.",
+        "When there are no uploaded gallery images, the existing three static images still render as they do today.",
+        "Lightbox navigation works for the dynamically loaded images (previous/next, counter, close)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/site/sections/GallerySection.tsx",
+          "operation": "modify",
+          "description": "Update the public GallerySection to load uploaded gallery image metadata from the backend and render those images (using ExternalBlob.getDirectURL() for image src when available). If the loaded list is empty, keep the current behavior using the three static assets-based images. Ensure the GalleryLightbox continues to receive an images array and selected index so previous/next navigation, counter, and close work for dynamic images as well. Use the blob-storage ExternalBlob direct URL rendering guidance. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add React Query hooks for gallery upload/list/fetch/delete APIs and wire them into admin Gallery management and the public Gallery section with cache invalidation.",
+      "acceptanceCriteria": [
+        "After upload/delete operations, the gallery list used by the admin UI is refreshed via cache invalidation.",
+        "Public Gallery view updates to reflect newly uploaded/deleted images after navigation/refresh without requiring code changes."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useGallery.ts",
+          "operation": "create",
+          "description": "Create React Query hooks backed by the existing actor methods: useListGalleryImages (list metadata), useGetGalleryImage (fetch one image by id), useUploadGalleryImage (upload), and useDeleteGalleryImage (delete). Ensure upload/delete invalidate the gallery list query key(s) so admin and public views refresh without reload. Use blob-storage ExternalBlob on the frontend for upload (ExternalBlob.fromBytes and optional withUploadProgress) and for rendering (getDirectURL). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/AdminGalleryPage.tsx",
+          "operation": "modify",
+          "description": "Wire the new useGallery hooks into AdminGalleryPage: list images, upload selected file (convert to bytes and wrap in ExternalBlob), and delete with confirmation; show English success/error/empty states; and trigger list refresh via hook invalidation after upload/delete. Verify the blob-storage ExternalBlob usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/site/sections/GallerySection.tsx",
+          "operation": "modify",
+          "description": "Wire useListGalleryImages into GallerySection so the public gallery prefers uploaded images when present, while maintaining static fallback behavior when none exist. Ensure cache behavior works with navigation/refresh and doesn’t require a full page reload."
+        }
+      ]
+    }
+  ]
+}

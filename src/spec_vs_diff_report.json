@@ -1,0 +1,47 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T05:44:04.992Z",
+  "summary": "Frontend changes add React Query hooks for gallery operations, a new admin gallery management page routed at #/admin/gallery, and update the public Gallery section to prefer backend-provided images with fallback to static assets. Backend diff evidence does not clearly show the required new gallery image storage/APIs or upgrade-safe persistence for gallery images; the added migration module appears to be a no-op and does not include gallery fields.",
+  "missing_requirements": [
+    {
+      "id": "REQ-8",
+      "requirement": "Backend data structures and admin-only APIs for gallery image upload (bytes + content type + filename + optional alt), list metadata-only, fetch image bytes+content-type by id, and delete by id (with clear trap message for non-admins).",
+      "reason": "The diff summary for backend/main.mo is truncated and shows existing inquiry/profile logic and inclusion of a blob-storage mixin, but does not show any gallery-specific types/state or the required upload/list/get/delete functions, nor the admin-only rejection/trap messages for these endpoints.",
+      "evidence": [
+        "backend/main.mo (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Persist uploaded gallery images across canister upgrades while preserving existing inquiries/user profiles/access control; add conditional migration if needed.",
+      "reason": "backend/migration.mo defines OldActor/NewActor with only inquiry/profile fields and returns the old state unchanged; no gallery image fields/state are present, so persistence/migration for uploaded images is not evidenced.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo (truncated)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Frontend upload hook and admin upload flow require the client to generate and supply an explicit image id to uploadGalleryImage(id, filename, blob, alt).",
+      "reason": "REQ-8 specifies the backend should support uploading a new image and fetching/deleting by id, but does not request that the client must provide the id during upload (backend-generated ids would also satisfy the requirement).",
+      "evidence": [
+        "frontend/src/hooks/useGallery.ts",
+        "frontend/src/pages/AdminGalleryPage.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.63,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/App.tsx",
+    "frontend/src/components/site/sections/GallerySection.tsx",
+    "frontend/src/hooks/useGallery.ts",
+    "frontend/src/pages/AdminGalleryPage.tsx",
+    "frontend/src/pages/AdminInquiriesPage.tsx",
+    "project_state.json"
+  ]
+}

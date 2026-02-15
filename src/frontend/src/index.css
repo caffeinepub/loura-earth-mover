@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.5rem;
+        /* Earth tone palette - warm browns, tans, and oranges */
+        --background: 0.97 0.015 60;
+        --foreground: 0.25 0.04 40;
+        --card: 0.99 0.01 60;
+        --card-foreground: 0.25 0.04 40;
+        --popover: 0.99 0.01 60;
+        --popover-foreground: 0.25 0.04 40;
+        /* Rich earth brown for primary */
+        --primary: 0.42 0.08 45;
+        --primary-foreground: 0.98 0.01 60;
+        /* Warm tan for secondary */
+        --secondary: 0.88 0.03 55;
+        --secondary-foreground: 0.30 0.04 40;
+        --muted: 0.92 0.02 55;
+        --muted-foreground: 0.50 0.03 45;
+        /* Burnt orange accent */
+        --accent: 0.65 0.15 35;
+        --accent-foreground: 0.98 0.01 60;
+        --destructive: 0.55 0.22 25;
+        --destructive-foreground: 0.98 0.01 60;
+        --border: 0.88 0.02 55;
+        --input: 0.88 0.02 55;
+        --ring: 0.42 0.08 45;
+        --chart-1: 0.65 0.15 35;
+        --chart-2: 0.55 0.12 50;
+        --chart-3: 0.45 0.10 40;
+        --chart-4: 0.70 0.18 30;
+        --chart-5: 0.60 0.14 45;
+    }
+
+    .dark {
+        --background: 0.20 0.04 40;
+        --foreground: 0.95 0.01 60;
+        --card: 0.25 0.04 40;
+        --card-foreground: 0.95 0.01 60;
+        --popover: 0.22 0.04 40;
+        --popover-foreground: 0.95 0.01 60;
+        /* Lighter earth tone for dark mode primary */
+        --primary: 0.70 0.12 45;
+        --primary-foreground: 0.20 0.04 40;
+        --secondary: 0.35 0.05 42;
+        --secondary-foreground: 0.95 0.01 60;
+        --muted: 0.32 0.04 42;
+        --muted-foreground: 0.70 0.02 50;
+        /* Brighter burnt orange for dark mode */
+        --accent: 0.68 0.18 35;
+        --accent-foreground: 0.98 0.01 60;
+        --destructive: 0.60 0.24 25;
+        --destructive-foreground: 0.98 0.01 60;
+        --border: 0.35 0.04 42;
+        --input: 0.35 0.04 42;
+        --ring: 0.70 0.12 45;
+        --chart-1: 0.68 0.18 35;
+        --chart-2: 0.58 0.14 50;
+        --chart-3: 0.48 0.12 40;
+        --chart-4: 0.73 0.20 30;
+        --chart-5: 0.63 0.16 45;
+    }
+
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+@layer components {
+    .section-container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+    
+    .section-spacing {
+        @apply py-16 md:py-24;
+    }
+}
+

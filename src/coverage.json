@@ -1,0 +1,95 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T05:44:04.995Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-10",
+        "summary": "Add an admin-only Gallery management UI reachable via hash routing under the existing admin area (e.g., #/admin/gallery) that allows authenticated admins to upload images to the backend, view a list of uploaded gallery images, and delete uploaded images.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AdminGalleryPage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/AdminInquiriesPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AdminGalleryPage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/AdminInquiriesPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Update the public Gallery section to support rendering uploaded gallery images from the backend. If uploaded images exist, show them; otherwise, fall back to the current static local assets-based gallery.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/site/sections/GallerySection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/site/sections/GallerySection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Add React Query hooks for the new gallery upload/list/fetch/delete backend APIs and wire them into the admin gallery management UI and public Gallery section, including appropriate cache invalidation after upload/delete.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useGallery.ts",
+          "frontend/src/pages/AdminGalleryPage.tsx",
+          "frontend/src/components/site/sections/GallerySection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useGallery.ts",
+          "frontend/src/pages/AdminGalleryPage.tsx",
+          "frontend/src/components/site/sections/GallerySection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Add backend data structures and APIs to support admin-only uploading and managing Gallery images stored in canister state, including: (1) upload a new image file (bytes + content type + filename + optional alt text), (2) list uploaded gallery images (metadata only), (3) fetch a gallery image by id (bytes + content type), and (4) delete a gallery image by id.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Implement safe persistence for uploaded gallery images across canister upgrades while preserving existing stored state (inquiries, user profiles, and access control state). If a migration is needed due to new stable fields, add a conditional backend/migration.mo to migrate existing state forward.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/site/sections/GallerySection.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useGallery.ts",
+    "frontend/src/pages/AdminGalleryPage.tsx",
+    "frontend/src/pages/AdminInquiriesPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

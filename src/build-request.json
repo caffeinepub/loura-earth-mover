@@ -1,0 +1,122 @@
+{
+  "kind": "build_request",
+  "title": "Add admin photo upload for the Gallery",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-8",
+      "text": "Add backend data structures and APIs to support admin-only uploading and managing Gallery images stored in canister state, including: (1) upload a new image file (bytes + content type + filename + optional alt text), (2) list uploaded gallery images (metadata only), (3) fetch a gallery image by id (bytes + content type), and (4) delete a gallery image by id.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Photo upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Uploading a gallery image is restricted to admins; non-admin callers are rejected with a clear error (trap) message.",
+        "Backend provides an API to list gallery images without transferring full image bytes.",
+        "Backend provides an API to retrieve the raw bytes and content type for a single image by id so the frontend can render it.",
+        "Backend provides an API to delete an uploaded image; deleted images no longer appear in list results and cannot be fetched."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Implement safe persistence for uploaded gallery images across canister upgrades while preserving existing stored state (inquiries, user profiles, and access control state). If a migration is needed due to new stable fields, add a conditional backend/migration.mo to migrate existing state forward.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Photo upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After an upgrade, previously uploaded gallery images remain available via list and fetch APIs.",
+        "After an upgrade, existing inquiry data remains available and unchanged.",
+        "After an upgrade, existing admin authorization behavior remains unchanged."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add an admin-only Gallery management UI reachable via hash routing under the existing admin area (e.g., #/admin/gallery) that allows authenticated admins to upload images to the backend, view a list of uploaded gallery images, and delete uploaded images.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Photo upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A non-authenticated user attempting to access the admin gallery management UI is shown an English sign-in prompt consistent with the existing admin access gating.",
+        "An authenticated non-admin user attempting to access the admin gallery management UI is shown an English access denied message consistent with the existing admin access gating.",
+        "An admin can select an image file in the browser, upload it, see a success state in English, and see the new image appear in the uploaded images list without a full page reload.",
+        "An admin can delete an uploaded image and it is removed from the list after confirmation/clear UI action."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Update the public Gallery section to support rendering uploaded gallery images from the backend. If uploaded images exist, show them; otherwise, fall back to the current static local assets-based gallery.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Photo upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When the backend returns one or more uploaded gallery images, the public gallery grid and lightbox render those images correctly.",
+        "When there are no uploaded gallery images, the existing three static images still render as they do today.",
+        "Lightbox navigation works for the dynamically loaded images (previous/next, counter, close)."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Add React Query hooks for the new gallery upload/list/fetch/delete backend APIs and wire them into the admin gallery management UI and public Gallery section, including appropriate cache invalidation after upload/delete.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Photo upload"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After upload/delete operations, the gallery list used by the admin UI is refreshed via cache invalidation.",
+        "Public Gallery view updates to reflect newly uploaded/deleted images after navigation/refresh without requiring code changes."
+      ]
+    }
+  ],
+  "constraints": [
+    "Keep all Motoko logic in the single backend actor (backend/main.mo); do not introduce additional backend services.",
+    "Do not edit frontend files under frontend/src/components/ui or the immutable hook paths listed in SYSTEM_CONTEXT.",
+    "Use English for all user-facing text (errors, empty states, button labels, helper text)."
+  ],
+  "nonGoals": [
+    "Do not add third-party storage providers or external databases for image storage.",
+    "Do not implement real-time updates (no WebSockets or push).",
+    "Do not add end-user (public) image uploads; uploads are admin-only."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-an-admin-only-gallery-management-ui-reachable-via-hash-routing-under-the-existing-admin-area-e-g-admin-gallery-that-allows-authenticated-admins-to-upload-images-to-the-backend-view-a-list-of-uploaded-gallery-images-and-delete-uploaded-images",
+      "featureTitle": "Add an admin-only Gallery management UI reachable via hash routing under the existing admin area (e.g., #/admin/gallery) that allows authenticated admins to upload images to the backend, view a list of uploaded gallery images, and delete uploaded images.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/AdminGalleryPage.tsx",
+        "frontend/src/pages/AdminInquiriesPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-public-gallery-section-to-support-rendering-uploaded-gallery-images-from-the-backend-if-uploaded-images-exist-show-them-otherwise-fall-back-to-the-current-static-local-assets-based-gallery",
+      "featureTitle": "Update the public Gallery section to support rendering uploaded gallery images from the backend. If uploaded images exist, show them; otherwise, fall back to the current static local assets-based gallery.",
+      "files": [
+        "frontend/src/components/site/sections/GallerySection.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-react-query-hooks-for-the-new-gallery-upload-list-fetch-delete-backend-apis-and-wire-them-into-the-admin-gallery-management-ui-and-public-gallery-section-including-appropriate-cache-invalidation-after-upload-delete",
+      "featureTitle": "Add React Query hooks for the new gallery upload/list/fetch/delete backend APIs and wire them into the admin gallery management UI and public Gallery section, including appropriate cache invalidation after upload/delete.",
+      "files": [
+        "frontend/src/components/site/sections/GallerySection.tsx",
+        "frontend/src/hooks/useGallery.ts",
+        "frontend/src/pages/AdminGalleryPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

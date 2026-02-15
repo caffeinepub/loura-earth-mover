@@ -1,0 +1,22 @@
+{
+  "frontend/src/index.css": "Global styles with earth-tone OKLCH color system (browns, tans, oranges) for light and dark modes, plus utility classes for sections.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom fonts (Outfit display font), earth-tone color tokens, and custom shadows for the earthmoving brand.",
+  "frontend/src/App.tsx": "Main application component with hash-based routing between home, admin inquiries, and admin gallery views.",
+  "frontend/src/components/site/TopNav.tsx": "Responsive navigation header with desktop links, mobile sheet menu, brand badge, and admin access link.",
+  "frontend/src/components/site/BrandBadge.tsx": "Reusable brand component displaying the Loura logo and wordmark with hover effects.",
+  "frontend/src/components/site/sections/HeroSection.tsx": "Hero section with background image, value proposition headline, and call-to-action buttons for quotes and services.",
+  "frontend/src/components/site/sections/ServicesSection.tsx": "Services showcase with four service cards (excavation, grading, hauling, clearing) using icons and descriptions.",
+  "frontend/src/components/site/sections/AboutSection.tsx": "About section with company story, three highlight cards (safety, experience, equipment), and logo display.",
+  "frontend/src/components/site/sections/GallerySection.tsx": "Public gallery section that displays uploaded images from backend or falls back to static images, with lightbox support.",
+  "frontend/src/components/site/GalleryLightbox.tsx": "Modal lightbox component for viewing gallery images with navigation controls and image counter.",
+  "frontend/src/components/site/sections/ContactSection.tsx": "Contact section wrapper with contact form, contact information cards, and why-choose-us list.",
+  "frontend/src/components/contact/ContactForm.tsx": "Contact form with validation, backend submission via useCreateInquiry hook, and success/error states.",
+  "frontend/src/components/site/Footer.tsx": "Site footer with brand, quick links, contact info, and Caffeine.ai attribution with UTM tracking.",
+  "frontend/src/hooks/useCreateInquiry.ts": "React Query mutation hook for submitting contact inquiries to the backend with cache invalidation.",
+  "frontend/src/hooks/useInquiries.ts": "React Query hooks for fetching inquiry list and individual inquiry details from the backend.",
+  "frontend/src/hooks/useAdminGuard.ts": "Custom hook that checks authentication and admin status for protecting the admin inquiries view.",
+  "frontend/src/components/auth/LoginButton.tsx": "Internet Identity login/logout button with loading states and query cache clearing on logout.",
+  "frontend/src/pages/AdminInquiriesPage.tsx": "Admin dashboard page with authentication guard, inquiries list, detailed inquiry view, and navigation to gallery management.",
+  "frontend/src/hooks/useGallery.ts": "React Query hooks for gallery operations including list, get, upload, and delete with cache invalidation.",
+  "frontend/src/pages/AdminGalleryPage.tsx": "Admin-only gallery management page with file upload, progress tracking, image list display, and delete functionality with authentication guards."
+}

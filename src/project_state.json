@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Create a website for Loura Earth Mover.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-build-a-responsive-multi-section-marketing-website-for-loura-earth-mover-with-clear-navigation-and-the-following-pages-sections-home-hero-value-proposition-services-about-gallery-images-and-contact",
+      "title": "Build a responsive multi-section marketing website for “Loura Earth Mover” with clear navigation and the following pages/sections: Home (hero + value proposition), Services, About, Gallery (images), and Contact.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-consistent-distinctive-visual-theme-for-the-site-colors-typography-spacing-and-component-style-appropriate-for-a-heavy-equipment-earthmoving-brand-apply-it-consistently-across-all-pages-sections",
+      "title": "Implement a consistent, distinctive visual theme for the site (colors, typography, spacing, and component style) appropriate for a heavy equipment/earthmoving brand; apply it consistently across all pages/sections.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-gallery-section-that-renders-a-grid-of-static-images-from-local-assets-and-supports-viewing-images-in-a-larger-lightbox-modal",
+      "title": "Create a Gallery section that renders a grid of static images from local assets and supports viewing images in a larger lightbox/modal.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-public-contact-form-that-collects-name-email-phone-optional-service-needed-dropdown-location-optional-and-message-validate-required-fields-client-side-and-show-clear-success-error-states-in-english",
+      "title": "Add a public Contact form that collects: name, email, phone (optional), service needed (dropdown), location (optional), and message; validate required fields client-side and show clear success/error states in English.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-only-inquiries-view-in-the-frontend-that-allows-authenticated-admins-to-sign-in-with-internet-identity-and-review-stored-contact-inquiries-list-detail-view",
+      "title": "Add an admin-only “Inquiries” view in the frontend that allows authenticated admins to sign in with Internet Identity and review stored contact inquiries (list + detail view).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-only-gallery-management-ui-reachable-via-hash-routing-under-the-existing-admin-area-e-g-admin-gallery-that-allows-authenticated-admins-to-upload-images-to-the-backend-view-a-list-of-uploaded-gallery-images-and-delete-uploaded-images",
+      "title": "Add an admin-only Gallery management UI reachable via hash routing under the existing admin area (e.g., #/admin/gallery) that allows authenticated admins to upload images to the backend, view a list of uploaded gallery images, and delete uploaded images.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-public-gallery-section-to-support-rendering-uploaded-gallery-images-from-the-backend-if-uploaded-images-exist-show-them-otherwise-fall-back-to-the-current-static-local-assets-based-gallery",
+      "title": "Update the public Gallery section to support rendering uploaded gallery images from the backend. If uploaded images exist, show them; otherwise, fall back to the current static local assets-based gallery.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-hooks-for-the-new-gallery-upload-list-fetch-delete-backend-apis-and-wire-them-into-the-admin-gallery-management-ui-and-public-gallery-section-including-appropriate-cache-invalidation-after-upload-delete",
+      "title": "Add React Query hooks for the new gallery upload/list/fetch/delete backend APIs and wire them into the admin gallery management UI and public Gallery section, including appropriate cache invalidation after upload/delete.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build a website for Loura Earth Mover",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement backend persistence for contact inquiries in the single Motoko actor, including: createInquiry (public), listInquiries (admin-only), and getInquiry (admin-only), with stored timestamp and basic field data.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Define an admin authorization mechanism on the backend based on a fixed allowlist of Principal(s) (configurable in code) and enforce it for admin-only inquiry APIs.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add photo upload capability so admins can upload images (e.g., for the Gallery) instead of relying only on static local assets.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add backend data structures and APIs to support admin-only uploading and managing Gallery images stored in canister state, including: (1) upload a new image file (bytes + content type + filename + optional alt text), (2) list uploaded gallery images (metadata only), (3) fetch a gallery image by id (bytes + content type), and (4) delete a gallery image by id.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement safe persistence for uploaded gallery images across canister upgrades while preserving existing stored state (inquiries, user profiles, and access control state). If a migration is needed due to new stable fields, add a conditional backend/migration.mo to migrate existing state forward.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Loura Earth Mover",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
